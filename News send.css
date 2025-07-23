@@ -1,0 +1,277 @@
+/* --- Global Settings & Variables --- */
+:root {
+    --main-red: #c40000;
+    --dark-bg: #111111;
+    --dark-text: #222222;
+    --light-text: #f5f5f5;
+    --background: #ffffff;
+    --grey-bg: #f7f7f7;
+    --border-color: #e0e0e0;
+}
+
+body {
+    font-family: 'Tajawal', sans-serif;
+    margin: 0;
+    background-color: var(--background);
+    color: var(--dark-text);
+    overflow-x: hidden; /* لمنع أي تمرير أفقي */
+}
+
+.container {
+    max-width: 950px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* --- Preloader Styles --- */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--dark-bg);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+#preloader.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader-logo {
+    font-size: 4rem;
+    font-weight: 900;
+    color: var(--light-text);
+    animation: pulse-loader 1.5s infinite ease-in-out;
+}
+
+.loader-logo .x-char {
+    color: var(--main-red);
+}
+
+@keyframes pulse-loader {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.7; }
+}
+
+/* --- Scroll & Load Animations --- */
+.animate-on-load {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInSlideUp 1s ease-out 0.5s forwards;
+}
+
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes fadeInSlideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- Hero Section --- */
+.hero-section {
+    height: 100vh;
+    background: url('https://via.placeholder.com/1920x1080/111111/FFFFFF?text=Hero+Image+Placeholder') no-repeat center center/cover; /* ضع رابط الصورة هنا */
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--light-text);
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.3));
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-content h1 {
+    font-size: 5rem;
+    font-weight: 900;
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+#typing-slogan {
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-top: 10px;
+    min-height: 50px; /* لتجنب القفز */
+}
+
+#typing-slogan::after {
+    content: '|';
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+/* --- Tribute Section --- */
+.tribute-section, .editor-tribute {
+    padding: 80px 0;
+    text-align: center;
+}
+
+.president-image-placeholder {
+    width: 180px;
+    height: 180px;
+    background-color: #ddd;
+    border: 5px solid var(--background);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    color: #888;
+}
+
+.president-caption {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+.tribute-text {
+    font-size: 1.25rem;
+    line-height: 1.9;
+    max-width: 750px;
+    margin: 0 auto;
+    color: #444;
+}
+
+/* --- Newspaper Section --- */
+.newspaper-section {
+    background-color: #000000; /* Dark black */
+    padding: 80px 0;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.newspaper-header {
+    font-size: 8rem;
+    font-weight: 900;
+    margin: 0 0 30px 0;
+    letter-spacing: 1px;
+    color: var(--light-text); /* Changed to light text for contrast */
+    transition: transform 0.3s ease;
+}
+
+
+.newspaper-header:hover {
+    transform: scale(1.02);
+}
+
+.newspaper-header .x-char {
+    color: var(--main-red);
+}
+
+.pulse-animation {
+    animation: pulse-red 2s infinite;
+}
+
+@keyframes pulse-red {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.press-statement p {
+    font-size: 1.5rem;
+    line-height: 2;
+    margin-bottom: 40px;
+    color: #333;
+}
+
+.press-statement .slogan {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: var(--dark-text);
+    border: 3px solid var(--dark-text);
+    padding: 10px 30px;
+    display: inline-block;
+    letter-spacing: 2px;
+}
+
+/* --- Editor Tribute --- */
+.tribute-card {
+    background: var(--background);
+    padding: 40px;
+    border-right: 5px solid var(--main-red);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    text-align: right;
+}
+
+.tribute-card h3 {
+    font-size: 1.5rem;
+    margin-top: 0;
+}
+
+.tribute-card p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+}
+
+/* --- Final Words Section --- */
+.final-words-section {
+    background-color: var(--dark-bg);
+    color: var(--light-text);
+    padding: 80px 0;
+    text-align: center;
+}
+
+.final-words-section h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.final-words-section p {
+    font-size: 1.3rem;
+    opacity: 0.8;
+}
+
+.president-image-placeholder {
+    /* احتفظ بالأنماط الموجودة مثل width, height, border-radius */
+    overflow: hidden; /* لضمان أن الصورة تتناسب داخل الشكل الدائري إذا كان العنصر دائريًا */
+    display: flex; /* للتوسيط إذا كانت الصورة أصغر من الحاوية */
+    justify-content: center;
+    align-items: center;
+    background-color: transparent; /* أزل أي لون خلفية ثابت */
+}
+
+.president-image-placeholder img {
+    width: 100%; /* اجعل الصورة تملأ عرض العنصر الحاوي */
+    height: 100%; /* اجعل الصورة تملأ ارتفاع العنصر الحاوي */
+    object-fit: cover; /* لضمان تغطية الصورة للمساحة دون تشوه، مع قص الأجزاء الزائدة */
+    display: block; /* لإزالة أي مسافات إضافية أسفل الصورة */
+}

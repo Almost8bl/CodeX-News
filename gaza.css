@@ -1,0 +1,529 @@
+/*
+=================================================================
+|        CODEX :: Modern Tech Reports CSS (Light Theme)         |
+=================================================================
+*/
+
+/* =================================
+   1. ROOT & CSS VARIABLES
+   ================================= */
+:root {
+    /* Color Palette :: Light Theme with Red Accent */
+    --color-background: #F9FAFB;      /* Tailwind bg-gray-50 */
+    --color-surface: #FFFFFF;         /* White for cards, sidebar */
+    --color-accent-primary: #DC2626;  /* Red-600 for main accents */
+    --color-accent-secondary: #B91C1C;/* Red-700 for hover/active states */
+    --color-glow: rgba(220, 38, 38, 0.2); /* Soft red glow */
+
+    /* Typography Palette */
+    --color-text-primary: #1F2937;    /* Gray-800 for main text */
+    --color-text-secondary: #6B7288;  /* Gray-500 for metadata, subtitles */
+    --color-text-header: #111827;     /* Gray-900 for main headers */
+
+    /* Font Stacks */
+    --font-primary: "Cairo", "Segoe UI", "Inter", sans-serif;
+    --font-mono: "IBM Plex Mono", "Fira Code", monospace;
+
+    /* Spacing & Sizing */
+    --spacing-unit: 8px;
+    --border-radius: 6px;
+    --transition-speed: 0.3s;
+    --transition-curve: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --header-height: 64px; /* h-16 from Tailwind */
+}
+
+/* =================================
+   2. GLOBAL RESETS & TYPOGRAPHY
+   ================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #E5E7EB; /* Gray-200 */
+}
+::-webkit-scrollbar-thumb {
+    background: var(--color-accent-secondary);
+    border-radius: var(--border-radius);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-accent-primary);
+}
+
+/* =================================
+   3. KEYFRAME ANIMATIONS
+   ================================= */
+@keyframes fadeIn-Up {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =================================
+   4. LAYOUT STRUCTURE
+   ================================= */
+#app-container {
+    display: grid;
+    /* The header is now sticky and outside this container */
+    grid-template-columns: 320px 1fr;
+    grid-template-rows: 1fr auto; /* Content fills height, footer is at the bottom */
+    grid-template-areas:
+        "sidebar main"
+        "footer footer";
+    /* Make sure the container takes at least the full viewport height minus the header */
+    min-height: calc(100vh - var(--header-height));
+}
+
+#sidebar { grid-area: sidebar; }
+#main-content { grid-area: main; }
+#main-footer { grid-area: footer; }
+
+
+/* =================================
+   5. COMPONENT: SIDEBAR
+   ================================= */
+#sidebar {
+    background: var(--color-surface);
+    border-left: 1px solid #E5E7EB; /* Gray-200 border */
+    padding: calc(var(--spacing-unit) * 3);
+    overflow-y: auto;
+    animation: fadeIn-Up 0.6s var(--transition-curve) forwards;
+}
+.sidebar-header {
+    margin-bottom: calc(var(--spacing-unit) * 3);
+}
+.sidebar-header h2 {
+    font-family: var(--font-mono);
+    color: var(--color-accent-primary);
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: var(--spacing-unit);
+}
+.sidebar-header span {
+    font-family: var(--font-mono);
+    color: var(--color-text-secondary);
+    font-size: 12px;
+}
+
+#reports-list-nav { /* تم تغيير الـ ID */
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--spacing-unit) * 1);
+}
+
+.news-item { /* تم الإبقاء على نفس الكلاس .news-item للحفاظ على التصميم */
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-unit);
+    width: 100%;
+    text-align: right;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: var(--border-radius);
+    padding: calc(var(--spacing-unit) * 1.5);
+    cursor: pointer;
+    color: var(--color-text-secondary);
+    transition: all var(--transition-speed) var(--transition-curve);
+    position: relative;
+}
+.news-item::before {
+    content: '';
+    position: absolute;
+    right: 0; /* Changed from left to right for RTL */
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--color-accent-primary);
+    transform: scaleY(0);
+    transform-origin: center;
+    transition: transform var(--transition-speed) var(--transition-curve);
+    border-radius: 3px;
+}
+.news-item:hover {
+    background: #FEF2F2; /* Red-50, similar to header dropdown */
+    color: var(--color-text-header);
+}
+.news-item:hover::before {
+    transform: scaleY(1);
+}
+.news-item.active {
+    background: #FEE2E2; /* Red-100 */
+    color: var(--color-text-header);
+    font-weight: 700;
+}
+.news-item.active::before {
+    transform: scaleY(1);
+}
+
+.news-item .company {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-accent-primary);
+    font-weight: 700;
+}
+.news-item .title {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+/* =================================
+   6. COMPONENT: MAIN CONTENT
+   ================================= */
+#main-content {
+    padding: calc(var(--spacing-unit) * 5);
+    overflow-y: auto;
+}
+.placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: var(--color-text-secondary);
+    text-align: center;
+    font-family: var(--font-mono);
+}
+
+.article-container {
+    animation: fadeIn-Up 0.8s var(--transition-curve) forwards;
+}
+.article-container h1 {
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    font-weight: 900;
+    color: var(--color-text-header);
+    line-height: 1.2;
+    margin-bottom: var(--spacing-unit);
+}
+.article-meta {
+    font-family: var(--font-mono);
+    color: var(--color-text-secondary);
+    margin-bottom: calc(var(--spacing-unit) * 4);
+}
+.article-meta span {
+    margin-left: calc(var(--spacing-unit) * 2);
+}
+.article-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+    margin-bottom: calc(var(--spacing-unit) * 4);
+    box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+    border: 1px solid #F3F4F6; /* Gray-100 */
+}
+.article-content {
+    font-size: 18px;
+    line-height: 1.8;
+    max-width: 850px;
+    color: var(--color-text-primary);
+}
+
+/* =================================
+   7. COMPONENT: FOOTER
+   ================================= */
+#main-footer {
+    padding: calc(var(--spacing-unit) * 4);
+    text-align: center;
+    background: var(--color-surface);
+    border-top: 1px solid #E5E7EB; /* Gray-200 */
+    color: var(--color-text-secondary);
+    animation: fadeIn-Up 1s var(--transition-curve) forwards;
+}
+.social-links a {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-family: var(--font-mono);
+    margin: 0 calc(var(--spacing-unit) * 2);
+    transition: color var(--transition-speed);
+}
+.social-links a:hover {
+    color: var(--color-accent-primary);
+}
+.copyright {
+    margin-top: calc(var(--spacing-unit) * 2);
+    font-size: 12px;
+}
+
+.footer-actions {
+    margin-top: calc(var(--spacing-unit) * 2);
+    margin-bottom: calc(var(--spacing-unit) * 2);
+}
+
+.back-to-home-button {
+    display: inline-block;
+    padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 3);
+    background-color: var(--color-accent-primary);
+    color: #FFF; /* White text on red button */
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    font-weight: 700;
+    transition: background-color var(--transition-speed), transform var(--transition-speed);
+}
+
+.back-to-home-button:hover {
+    background-color: var(--color-accent-secondary);
+    transform: translateY(-2px);
+}
+
+/* =================================
+   8. RESPONSIVE DESIGN
+   ================================= */
+@media (max-width: 992px) {
+    #app-container {
+        grid-template-columns: 280px 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    #app-container {
+        /* Switch to a single column layout on mobile */
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto 1fr auto;
+        grid-template-areas:
+            "sidebar"
+            "main"
+            "footer";
+    }
+    #sidebar {
+        max-height: 40vh; /* Adjust height for mobile */
+        border-left: none;
+        border-bottom: 1px solid #E5E7EB;
+    }
+    #main-content {
+        padding: calc(var(--spacing-unit) * 3);
+    }
+    .article-image {
+        height: 250px;
+    }
+}
+
+/* ---- تأثيرات دموية واقعية ومحسّنة ---- */
+.blood-drip-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.blood-drip {
+    position: absolute;
+    bottom: 100%; /* تبدأ الحركة من أعلى */
+    
+    /* استخدام متغيرات CSS للتحكم الديناميكي عبر JavaScript أو nth-child */
+    left: var(--left, 50%); /* موضع أفقي عشوائي */
+    width: var(--size, 5px); /* حجم عشوائي */
+    height: var(--size, 5px); /* حجم عشوائي */
+    
+    background-color: rgb(100, 0, 10); /* لون الدم الأساسي في الرأس */
+    border-radius: 50%;
+    
+    /* ظل واقعي يتبع شكل العنصر بدقة */
+    filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.5));
+    
+    /* قسم الرسوم المتحركة */
+    animation-name: drip-fall, wobble; /* دمج حركتين: السقوط والتذبذب */
+    animation-timing-function: cubic-bezier(0.6, 0.04, 0.98, 0.335), ease-in-out; /* حركة للسقوط، وأخرى للتذبذب */
+    animation-iteration-count: infinite, infinite;
+    animation-direction: normal, alternate;
+    animation-duration: var(--duration, 5s); /* مدة سقوط عشوائية */
+    animation-delay: var(--delay, 0s); /* تأخير بدء عشوائي */
+}
+
+/* ::before يُستخدم لإنشاء "الأثر" أو "المسار" الذي تتركه القطرة */
+.blood-drip::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    
+    width: 40%; /* أثر أرفع من رأس القطرة */
+    height: 250px; /* طول مبدئي كبير للأثر */
+    
+    /* تدرج لوني للأثر يبدو كأنه يتلاشى */
+    background: linear-gradient(to top, rgba(139, 0, 0, 0.7), rgba(139, 0, 0, 0));
+    border-radius: 5px;
+
+    /* حركة نمو الأثر خلف القطرة */
+    animation: stretch-trail linear infinite;
+    animation-duration: inherit; /* يرث المدة الزمنية من العنصر الأب */
+    animation-delay: inherit; /* يرث التأخير من العنصر الأب */
+}
+
+/* حركة السقوط العمودي (مع محاكاة اللزوجة) */
+@keyframes drip-fall {
+    0% {
+        bottom: 100%;
+        transform: scaleY(1);
+    }
+    90% {
+        transform: scaleY(1); /* يبقى الشكل طبيعيًا معظم الوقت */
+    }
+    100% {
+        bottom: -20%; /* يسقط خارج الشاشة */
+        transform: scaleY(1.3); /* يتمدد قليلاً في النهاية كأنه لزج */
+    }
+}
+
+/* حركة التذبذب الأفقي العشوائي أثناء السقوط */
+@keyframes wobble {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(var(--wobble-x, 5px)); }
+    100% { transform: translateX(0); }
+}
+
+/* حركة نمو أثر الدم خلف القطرة */
+@keyframes stretch-trail {
+    0% {
+        transform-origin: bottom;
+        transform: scaleY(0) translateX(-50%);
+    }
+    100% {
+        transform-origin: bottom;
+        transform: scaleY(1) translateX(-50%);
+    }
+}
+
+/* قطرة 1: متعرجة وغير منتظمة */
+.blood-drip:nth-child(1) {
+    --left: 10%;
+    --size: 8px;
+    --duration: 4s;
+    --delay: 0.5s;
+    --wobble-x: 7px;
+    clip-path: polygon(50% 0%, 100% 50%, 80% 100%, 20% 100%, 0% 50%);
+}
+
+/* قطرة 2: رفيعة وطويلة */
+.blood-drip:nth-child(2) {
+    --left: 70%;
+    --size: 4px;
+    --duration: 6s;
+    --delay: 1.2s;
+    --wobble-x: -3px;
+    border-radius: 20% 80% 30% 70% / 70% 30% 70% 30%;
+}
+.blood-drip:nth-child(2)::before {
+    width: 20%; /* أثر أرفع */
+}
+
+/* قطرة 3: بشكل مختلف */
+.blood-drip:nth-child(3) {
+    --left: 30%;
+    --size: 10px;
+    --duration: 3.5s;
+    --delay: 0s;
+    --wobble-x: 8px;
+    border-radius: 50% 50% 20% 80% / 50% 50% 80% 20%;
+}
+
+/* قطرة 4: إضافية بتوزيع ومظهر مختلف */
+.blood-drip:nth-child(4) {
+    --left: 90%;
+    --size: 6px;
+    --duration: 5s;
+    --delay: 2s;
+    --wobble-x: -5px;
+    clip-path: ellipse(40% 60% at 50% 50%); /* شكل بيضاوي */
+}
+
+/* قطرة 5: إضافية أخرى */
+.blood-drip:nth-child(5) {
+    --left: 5%;
+    --size: 7px;
+    --duration: 4.8s;
+    --delay: 1s;
+    --wobble-x: 6px;
+    border-radius: 60% 40% 70% 30% / 40% 60% 30% 70%;
+}
+
+/* قطرة 6: بلون مختلف قليلاً */
+.blood-drip:nth-child(6) {
+    --left: 45%;
+    --size: 5px;
+    --duration: 5.5s;
+    --delay: 0.8s;
+    --wobble-x: -4px;
+    background-color: rgb(120, 0, 15);
+}
+
+/* قطرة 7: شكل ماسي */
+.blood-drip:nth-child(7) {
+    --left: 80%;
+    --size: 9px;
+    --duration: 4.2s;
+    --delay: 1.5s;
+    --wobble-x: 10px;
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+}
+
+/* قطرة 8: بتوزيع مختلف */
+.blood-drip:nth-child(8) {
+    --left: 20%;
+    --size: 4.5px;
+    --duration: 6.2s;
+    --delay: 0.3s;
+    --wobble-x: -2px;
+    border-radius: 30% 70% 60% 40% / 70% 30% 40% 60%;
+}
+
+/* قطرة 9: بلون أغمق */
+.blood-drip:nth-child(9) {
+    --left: 60%;
+    --size: 7.5px;
+    --duration: 3.8s;
+    --delay: 2.5s;
+    --wobble-x: 9px;
+    background-color: rgb(90, 0, 5);
+}
+
+/* قطرة 10: بسيطة */
+.blood-drip:nth-child(10) {
+    --left: 35%;
+    --size: 6.5px;
+    --duration: 5.8s;
+    --delay: 0.7s;
+    --wobble-x: -6px;
+}
+
+/* يمكنك الاستمرار في إضافة المزيد من قواعد nth-child لتغطية عدد أكبر من القطرات */
+.blood-drip:nth-child(11) {
+    --left: 15%; --size: 5.5px; --duration: 4.3s; --delay: 1.8s; --wobble-x: 4px;
+}
+.blood-drip:nth-child(12) {
+    --left: 85%; --size: 8.5px; --duration: 5.2s; --delay: 0.1s; --wobble-x: -7px;
+}
+.blood-drip:nth-child(13) {
+    --left: 25%; --size: 7px; --duration: 3.9s; --delay: 2.2s; --wobble-x: 5px;
+}
+.blood-drip:nth-child(14) {
+    --left: 55%; --size: 4px; --duration: 6.5s; --delay: 0.4s; --wobble-x: -3px;
+}
+.blood-drip:nth-child(15) {
+    --left: 75%; --size: 9.5px; --duration: 4.7s; --delay: 1.3s; --wobble-x: 11px;
+}
+

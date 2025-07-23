@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeX | تقارير فلسطين</title>
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="android-chrome-512x512.png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="gaza.css"> <style>
+        /* This ensures the font is applied correctly, overriding Tailwind's default */
+        body, .font-cairo {
+            font-family: 'Cairo', sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+<header class="bg-white shadow-md sticky top-0 z-50 font-cairo">
+    <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+            <div class="flex flex-col items-center justify-center">
+                <h2 class="text-4xl md:text-5xl font-extrabold drop-shadow-md leading-tight font-serif">
+                    <span style="color: #000000;">Code</span><span style="color: #b60101;">X</span>
+                </h2>
+                <p class="text-lg md:text-xl font-semibold text-black -mt-1">
+                    News
+                </p>
+            </div>
+            <div class="hidden lg:block">
+                <ul id="nav-links" class="flex items-center space-x-2">
+                    <li><a href="index.html" class="block px-3 py-2 text-gray-700 hover:text-red-700" data-page="آخر الأخبار">آخر الأخبار</a></li>
+                    <li class="relative group">
+                        <a href="News reports.html" class="px-3 py-2 text-gray-700 hover:text-red-700 font-semibold flex items-center" data-page="تقارير">
+                            تقارير
+                            <svg class="w-4 h-4 mr-1 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </a>
+                        <div class="absolute right-0 w-48 bg-white rounded-md shadow-lg pt-3 pb-1 z-20 opacity-0 group-hover:opacity-100 invisible group-hover:visible transition duration-200">
+                            <a href="News Gain.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-700" data-page="تحقيقات">تحقيقات</a>
+                            <a href="News Analytics.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-700" data-page="تحليلات">تحليلات</a>
+                            <a href="News Opinion.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-700" data-page="مقالات رأي">مقالات رأي</a>
+                        </div>
+                    </li>
+
+                    <li><a href="News politics.html" class="px-3 py-2 text-gray-700 hover:text-red-700 font-semibold" data-page="سياسة">سياسة</a></li>
+                    <li><a href="News economy.html" class="px-3 py-2 text-gray-700 hover:text-red-700 font-semibold" data-page="اقتصاد">اقتصاد</a></li>
+                    <li><a href="News world.html" class="px-3 py-2 text-gray-700 hover:text-red-700 font-semibold" data-page="العالم">العالم</a></li>
+                    <li><a href="News send.html" class="px-3 py-2 text-gray-700 hover:text-red-700 font-semibold" data-page="رسالة">رسالة</a></li>
+                    <li><a href="gaza.html" class="px-3 py-2 text-gray-700 hover:text-red-700 font-semibold" data-page="غزة">غزة</a></li>
+                    <li class="relative group">
+                        <a href="News technology.html" class="px-3 py-2 text-gray-700 hover:text-red-700 font-semibold flex items-center" data-page="تكنولوجيا">
+                            تكنولوجيا
+                            <svg class="w-4 h-4 mr-1 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </a>
+                        <div class="absolute right-0 w-48 bg-white rounded-md shadow-lg pt-3 pb-1 z-20 opacity-0 group-hover:opacity-100 invisible group-hover:visible transition duration-200">
+                            <a href="AI.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-700" data-page="الذكاء الاصطناعي">الذكاء الاصطناعي</a>
+                            <a href="Devices.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-700" data-page="أجهزة">أجهزة</a>
+                            <a href="Software.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-700" data-page="برمجيات">برمجيات</a>
+                        </div>
+                    </li>
+
+                    <li><a href="News sports.html" class="px-3 py-2 text-gray-700 hover:text-red-700 font-semibold" data-page="رياضة">رياضة</a></li>
+                </ul>
+            </div>
+
+            <div class="lg:hidden">
+                <button id="mobile-menu-button" class="text-gray-700 hover:text-red-700 focus:outline-none">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden lg:hidden pb-4">
+            <ul id="mobile-nav-links" class="flex flex-col space-y-2 mt-2">
+                <li><a href="index.html" class="block px-3 py-2 text-gray-700 hover:text-red-700" data-page="آخر الأخبار">آخر الأخبار</a></li>
+                <li><a href="News reports.html" class="block px-3 py-2 text-gray-700 hover:text-red-700" data-page="تقارير">تقارير</a></li>
+                <li><a href="News politics.html" class="block px-3 py-2 text-gray-700 hover:text-red-700" data-page="سياسة">سياسة</a></li>
+                <li><a href="News economy.html" class="block px-3 py-2 text-gray-700 hover:text-red-700" data-page="اقتصاد">اقتصاد</a></li>
+                <li><a href="News world.html" class="block px-3 py-2 text-gray-700 hover:text-red-700" data-page="العالم">العالم</a></li>
+                <li><a href="News send.html" class="px-3 py-2 text-gray-700 hover:text-red-700 font-semibold" data-page="رسالة">رسالة</a></li>
+                    <li><a href="gaza.html" class="px-3 py-2 text-gray-700 hover:text-red-700 font-semibold" data-page="غزة">غزة</a></li>
+                <li><a href="News technology.html" class="block px-3 py-2 text-gray-700 hover:text-red-700" data-page="تكنولوجيا">تكنولوجيا</a></li>
+                <li><a href="News sports.html" class="block px-3 py-2 text-gray-700 hover:text-red-700" data-page="رياضة">رياضة</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+    <div id="app-container">
+        <aside id="sidebar">
+            <div class="sidebar-header">
+                <h2>// حكاية الأرض</h2> <span>All_eyes_on_Gaza#
+</span> </div>
+            <nav id="reports-list-nav"> </nav>
+        </aside>
+
+        <main id="main-content">
+            <div class="placeholder">
+  <h2>جاري تحميل التقارير الفلسطينية من الخوادم...</h2>
+<p> يرجى الانتظار قليلاً حتى تظهر قائمة التقارير الفلسطينية.</p>
+
+        </main>
+
+        <footer id="main-footer">
+            <div class="social-links">
+                <a href="https://www.youtube.com/@CodeX-dev-eazy">YouTube</a>
+                <a href="https://discord.gg/QQAEpsnKZF">Discord</a>
+                <a href="https://x.com/CodeXdeveazy">X (Twitter)</a>
+            </div>
+            <div class="footer-actions">
+                <a href="https://almost8bl.github.io/CodeX.-/" class="back-to-home-button">الموقع الرسمي</a>
+            </div>
+            <div class="copyright">
+                © 2025 CodeX News Corp. All Rights Reserved.
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('mobile-menu-button').addEventListener('click', function () {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+    </script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="gaza.js"></script> </body>
+</html>
